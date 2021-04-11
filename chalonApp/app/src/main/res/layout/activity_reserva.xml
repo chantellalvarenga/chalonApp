@@ -9,7 +9,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tvTratamientos"
@@ -139,8 +143,8 @@
                 tools:layout_editor_absoluteY="731dp">
 
                 <TextView
-                    android:id="@+id/tvFechaLbl"
-                    android:layout_width="133dp"
+                    android:id="@+id/tvFecha"
+                    android:layout_width="108dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_weight="1"
@@ -152,15 +156,28 @@
 
                 <TextView
                     android:id="@+id/tvSetFecha"
-                    android:layout_width="167dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="2dp"
                     android:layout_weight="1"
                     android:text="@string/ejemFecha"
-                    android:textAlignment="center"
+                    android:textAlignment="textEnd"
                     android:textColor="#0E0D0D"
                     android:textSize="14sp"
                     android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/tvFechaLbl"
+                    android:layout_width="20dp"
+                    android:layout_height="28dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
+                    android:background="#00FFFFFF"
+                    android:minWidth="10dp"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/calendar" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -170,8 +187,8 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tvHoraLbl"
-                    android:layout_width="111dp"
+                    android:id="@+id/tvHora"
+                    android:layout_width="88dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_weight="1"
@@ -180,6 +197,29 @@
                     android:textColor="#841E42"
                     android:textSize="24sp"
                     android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvSetHora"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/ejemFecha"
+                    android:textAlignment="textEnd"
+                    android:textColor="#0E0D0D"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/tvHoraLbl"
+                    android:layout_width="11dp"
+                    android:layout_height="32dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
+                    android:background="#00FFFFFF"
+                    android:minWidth="10dp"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/reloj" />
 
             </LinearLayout>
         </LinearLayout>
