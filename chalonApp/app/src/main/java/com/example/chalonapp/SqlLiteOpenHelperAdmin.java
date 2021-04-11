@@ -33,6 +33,7 @@ public class SqlLiteOpenHelperAdmin extends SQLiteOpenHelper{
     private static final String KEY_CITAS_ID_TRATAMIENTO = "id_tratamiento";
     private static final String KEY_CITAS_FECHA="fecha";
     private static final String KEY_CITAS_ESTADO="estado";
+    private static final String KEY_CITAS_HORA="hora";
 
     public SqlLiteOpenHelperAdmin(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -60,6 +61,7 @@ public class SqlLiteOpenHelperAdmin extends SQLiteOpenHelper{
                 KEY_CITAS_ID_TRATAMIENTO+" INTEGER,"+
                 KEY_CITAS_ESTADO+" TEXT,"+
                 KEY_CITAS_FECHA+" TEXT,"+
+                KEY_CITAS_HORA+" TEXT,"+
                 "FOREIGN KEY("+KEY_CITAS_ID_CLIENTE+") references "+TABLE_CLIENTES+""+"("+KEY_CLIENTE_ID+"),"+
                 "FOREIGN KEY("+KEY_CITAS_ID_TRATAMIENTO+") references "+TABLE_TRATAMIENTOS+""+"("+KEY_TRATAMIENTOS_ID+")"+
                 ")";
