@@ -60,7 +60,7 @@ public class activity_selecion extends AppCompatActivity {
         if (displayname != null){
             String[] arrSplit_3 = displayname.split("\\s");
             nombres = arrSplit_3[0];
-            apellidos = arrSplit_3[1];
+            //apellidos = arrSplit_3[1];
         }
 
         //Verificar en la base de datos y obtener el id del usuario recibido desde Firebase

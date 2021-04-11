@@ -10,7 +10,6 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="go_selections">"Ir a ver tratamientos"</string>
-    <string name="aceptar_re">Confirmar reserva</string>
     <string name="login_label">Perfeccionando tu belleza</string>
     <string name="loginbutton_label">Ingresar</string>
     <string name="register_label">Aún no tienes cuenta? Registrate</string>
@@ -35,4 +34,17 @@
     <string name="DefaultValue">"Tratamiento"</string>
     <string name="DefaultValue2">"Precio"</string>
 
+    <!-- Strings related to Activity Seleccion de Tratamiento-->
+    <string name="tratamientos">"Tratamientos"</string>
+
+    <!-- Strings related to Activity Reserva de Tratamiento-->
+    <string name="AgendarCita">"Agendar cita"</string>
+    <string name="aceptar_re">Agendar</string>
+
+    <string name="nombre">Nombre:</string>
+    <string name="tratamiento">Tratamiento:</string>
+    <string name="fecha">Seleccione fecha:</string>
+    <string name="hora">Seleccione hora:</string>
+    <string name="precio">Precio:</string>
+    <string name="ejemFecha">24-02-21</string>
 </resources>
