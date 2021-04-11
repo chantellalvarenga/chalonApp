@@ -27,7 +27,8 @@
         <ListView
             android:id="@+id/listView1"
             android:layout_width="405dp"
-            android:layout_height="641dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
