@@ -46,5 +46,5 @@
     <string name="fecha">Seleccione fecha:</string>
     <string name="hora">Seleccione hora:</string>
     <string name="precio">Precio:</string>
-    <string name="ejemFecha">24-02-21</string>
+    <string name="ejemFecha">Elegir...</string>
 </resources>
