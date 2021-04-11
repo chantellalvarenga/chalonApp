@@ -6,64 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".activity_selecion">
 
-    <TextView
-        android:id="@+id/txtBienvenidaUser"
-        android:layout_width="256dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="24dp"
-        android:hint="Bienvenido"
-        android:text="Bienvenido"
-        android:textAlignment="center"
-        android:textColor="#12151C"
-        android:textColorHint="#FFFFFF"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <ListView
-        android:id="@+id/listView1"
-        android:layout_width="409dp"
-        android:layout_height="410dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+        <TextView
+            android:id="@+id/tvTratamientos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="135dp"
+            android:layout_marginTop="8dp"
+            android:text="Tratamientos"
+            android:textColor="#841E42"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="53dp"
+            tools:layout_editor_absoluteY="72dp" />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:onClick="closeFirebaseAccount"
-        android:text="@string/fireaccount_label"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtBienvenidaUser" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:onClick="closeGoogleAccount"
-        android:text="@string/googleaccount_label"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:onClick="deleteGoogleAccount"
-        android:text="@string/deletegoogle_label"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
+        <ListView
+            android:id="@+id/listView1"
+            android:layout_width="405dp"
+            android:layout_height="641dp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

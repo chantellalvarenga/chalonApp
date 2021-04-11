@@ -52,7 +52,7 @@ public class activity_selecion extends AppCompatActivity {
 
         //Declaramos las variables a utilizar
         //img=findViewById(R.id.imageView1);
-        txtBienvenidaUser = findViewById(R.id.txtBienvenidaUser);
+        //txtBienvenidaUser = findViewById(R.id.txtBienvenidaUser);
         listviewTratamientos=findViewById(R.id.listView1);
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
@@ -68,7 +68,7 @@ public class activity_selecion extends AppCompatActivity {
         id = VerificarUser(nombres, apellidos);
 
         //Bienvenida al Usuario
-        txtBienvenidaUser.setText("Bienvenido: " + nombres + " " + apellidos);
+        //txtBienvenidaUser.setText("Bienvenido: " + nombres + " " + apellidos);
 
         //Si no existe en BD lo crea
        if(id == 0)

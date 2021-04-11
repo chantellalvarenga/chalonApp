@@ -10,7 +10,7 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="go_selections">"Ir a ver tratamientos"</string>
-    <string name="reservar">"Reservar"</string>
+    <string name="reservar">"Agendar"</string>
     <string name="aceptar_re">Confirmar reserva</string>
     <string name="login_label">Perfeccionando tu belleza</string>
     <string name="loginbutton_label">Ingresar</string>

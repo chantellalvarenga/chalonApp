@@ -71,27 +71,27 @@ public class CustomAdapter extends BaseAdapter {
                     .into(imageTratamiento);
 
             TxtNombre.setText(item.getNombre());
-            TxtPrecio.setText(String.valueOf(item.getPrecio()));
+            TxtPrecio.setText("$ " + String.valueOf(item.getPrecio()));
 
 
 btn_reserva.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
 
-        String nombres_cliente="";
-        String apellidos_cliente="";
+        String nombres_cliente = "";
+        String apellidos_cliente = "";
 
         SqlLiteOpenHelperAdmin admin = new SqlLiteOpenHelperAdmin(context,"chalon_database",null,1);
 
         SQLiteDatabase database =admin.getReadableDatabase();
 
 
-        Cursor fila=database.rawQuery("select nombres,apellidos from clientes where id="+_id_cliente+"",null);
+        Cursor fila = database.rawQuery("select nombres, apellidos from clientes where id = "+_id_cliente+"",null);
 
         if(fila.moveToFirst())
         {
-            nombres_cliente=fila.getString(0).toString();
-            apellidos_cliente=fila.getString(1).toString();
+            nombres_cliente = fila.getString(0).toString();
+            apellidos_cliente = fila.getString(1).toString();
         }
 
 
