@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F2E0DE"
+    android:background="#F8F8F8"
     tools:context=".LoginActivity">
 
     <TextView
@@ -15,7 +15,8 @@
         android:clickable="false"
         android:fontFamily="cursive"
         android:text="@string/login_label"
-        android:textSize="30sp"
+        android:textColor="#841E42"
+        android:textSize="36sp"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -23,14 +24,14 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="150dp"
-        android:layout_height="145dp"
+        android:layout_width="192dp"
+        android:layout_height="188dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt"
-        app:srcCompat="@drawable/icon_login" />
+        app:srcCompat="@drawable/icon_logo" />
 
     <EditText
         android:id="@+id/txtemaillogin"
@@ -40,6 +41,8 @@
         android:ems="10"
         android:hint="@string/prompt_email"
         android:inputType="textPersonName"
+        android:textColor="#841E42"
+        android:textColorHint="#841E42"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
@@ -52,19 +55,23 @@
         android:ems="10"
         android:hint="@string/prompt_password"
         android:inputType="textPassword"
+        android:textColor="#841E42"
+        android:textColorHint="#841E42"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtemaillogin" />
 
     <Button
         android:id="@+id/btnlogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="81dp"
+        android:layout_height="35dp"
         android:layout_marginTop="20dp"
-        android:background="#F20587"
+        android:background="#70E89F91"
         android:onClick="loginearse"
         android:text="@string/loginbutton_label"
-        android:textColor="#FFFFFF"
+        android:textAllCaps="false"
+        android:textColor="#841E42"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtpasslogin" />
@@ -73,26 +80,29 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="28dp"
         android:clickable="true"
         android:onClick="ToRegister"
         android:text="@string/register_label"
-        android:textSize="16sp"
+        android:textColor="#841E42"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnlogin" />
 
     <Button
         android:id="@+id/btnlogingoogle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="#F20587"
-        android:drawableLeft="@drawable/google_icon"
+        android:layout_width="160dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="32dp"
+        android:background="#70E89F91"
+        android:drawableLeft="@drawable/google_ic"
         android:onClick="SignGoogle"
         android:text="@string/google_label"
-        android:textColor="#FFFFFF"
+        android:textAllCaps="false"
+        android:textColor="#841E42"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
