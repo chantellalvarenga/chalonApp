@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity_loginuser"></activity>
+        <activity android:name=".HistoryActivity"></activity>
+        <activity android:name=".activity_loginuser" />
         <activity
             android:name=".activity_reserva"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />

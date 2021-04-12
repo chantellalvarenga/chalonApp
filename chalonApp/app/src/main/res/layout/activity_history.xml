@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_selecion">
+    tools:context=".HistoryActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,29 +15,21 @@
             android:id="@+id/tvTratamientos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
+            android:layout_marginStart="140dp"
             android:layout_marginTop="8dp"
             android:fontFamily="cursive"
-            android:text="@string/tratamientos"
+            android:text="@string/history"
             android:textColor="#841E42"
             android:textSize="36sp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="53dp"
             tools:layout_editor_absoluteY="72dp" />
 
-        <TextView
-            android:id="@+id/tvLinkHistorial"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="goHistory"
-            android:text="@string/history" />
-
         <ListView
             android:id="@+id/listView1"
             android:layout_width="405dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp" />
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

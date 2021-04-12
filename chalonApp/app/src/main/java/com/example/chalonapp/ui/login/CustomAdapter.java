@@ -11,12 +11,10 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.chalonapp.R;
 import com.example.chalonapp.SqlLiteOpenHelperAdmin;
-import com.example.chalonapp.activity_selecion;
 import com.example.chalonapp.data.model.Tratamiento;
 import com.example.chalonapp.activity_reserva;
 
@@ -64,7 +62,7 @@ public class CustomAdapter extends BaseAdapter {
 
             imageTratamiento=view.findViewById(R.id.imageViewTratamiento);
             TxtNombre=view.findViewById(R.id.txtNombre_tratamiento);
-            TxtPrecio=view.findViewById(R.id.text_precio_tratamiento);
+            TxtPrecio=view.findViewById(R.id.tvPrecioItem);
             btn_reserva=view.findViewById(R.id.btnReservar);
             Glide.with(view)
                     .load(item.getImg_url().toString())

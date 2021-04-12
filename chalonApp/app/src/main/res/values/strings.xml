@@ -47,4 +47,8 @@
     <string name="hora">Seleccione hora:</string>
     <string name="precio">Precio:</string>
     <string name="ejemFecha">Elegir...</string>
+
+    <!-- Strings related to HistoryActivity-->
+    <string name="history">"Historial"</string>
+s
 </resources>

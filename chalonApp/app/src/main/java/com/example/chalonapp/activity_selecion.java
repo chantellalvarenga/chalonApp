@@ -35,7 +35,7 @@ public class activity_selecion extends AppCompatActivity {
 
     EditText idtxt;
     ImageView img;
-    TextView txtBienvenidaUser;
+    TextView txtBienvenidaUser, tvLinkHistorial;
     ListView listviewTratamientos;
     List<Tratamiento> listaTratamientos;
     String nombres = "";
@@ -51,6 +51,7 @@ public class activity_selecion extends AppCompatActivity {
         setContentView(R.layout.activity_selecion);
 
         //Declaramos las variables a utilizar
+        tvLinkHistorial = findViewById(R.id.tvLinkHistorial);
         //img=findViewById(R.id.imageView1);
         //txtBienvenidaUser = findViewById(R.id.txtBienvenidaUser);
         listviewTratamientos=findViewById(R.id.listView1);
@@ -213,5 +214,10 @@ public class activity_selecion extends AppCompatActivity {
         database.execSQL(Insert_cliente);
         //Actualizar la activity para mostrar los datos del insert actualizados
        this.recreate();
+    }
+
+    public void goHistory(View v) {
+        Intent seleccion = new Intent(this, HistoryActivity.class);
+        startActivity(seleccion);
     }
 }
