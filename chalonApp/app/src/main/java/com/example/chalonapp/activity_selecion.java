@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -33,20 +34,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class activity_selecion extends AppCompatActivity {
-    public int id = 0;
+
     EditText idtxt;
     ImageView img;
-    TextView txtBienvenidaUser, tvnombre, tvapellido;
+    TextView txtBienvenidaUser;
+    ImageButton tvLinkHistorial;
     ListView listviewTratamientos;
     List<Tratamiento> listaTratamientos;
     String nombres = "";
     String apellidos = "";
-    private String nama, apa;
-    String displayname, correo, userID;
+    String displayname;
     FirebaseAuth firebaseAuth;
     private GoogleSignInClient mGoogleSignInClient;
     private GoogleSignInOptions gso;
-    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,16 +54,13 @@ public class activity_selecion extends AppCompatActivity {
         setContentView(R.layout.activity_selecion);
 
         //Declaramos las variables a utilizar
+        tvLinkHistorial = findViewById(R.id.tvLinkHistorial);
         //img=findViewById(R.id.imageView1);
-        txtBienvenidaUser = findViewById(R.id.tvTratamientos);
-        tvnombre = findViewById(R.id.lblnombre);
-        tvapellido = findViewById(R.id.lblapellido);
+        //txtBienvenidaUser = findViewById(R.id.txtBienvenidaUser);
         listviewTratamientos=findViewById(R.id.listView1);
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         displayname = currentUser.getDisplayName();
-        userID = firebaseAuth.getCurrentUser().getUid();
-        correo = currentUser.getEmail();
         if (displayname != null){
             String[] arrSplit_3 = displayname.split("\\s");
             nombres = arrSplit_3[0];
@@ -72,7 +69,7 @@ public class activity_selecion extends AppCompatActivity {
 
         //Borré métodos de verificar usuarios e insertar usuarios
 
-       CustomAdapter adapter = new CustomAdapter(this, GetData(), id);
+       CustomAdapter adapter = new CustomAdapter(this, GetData(), 1);
         listviewTratamientos.setAdapter(adapter);
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -169,10 +166,9 @@ public class activity_selecion extends AppCompatActivity {
         return  listItem;
     }
 
-
-
-
-    //Inserta usuario logeado desde Firebase si no existe en la base de datos sqlLite
-    //Recibe como parametros los nombres y apellidos
+    public void goHistory(View v) {
+        Intent seleccion = new Intent(this, HistoryActivity.class);
+        startActivity(seleccion);
+    }
 
 }

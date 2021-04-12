@@ -10,11 +10,11 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="go_selections">"Ir a ver tratamientos"</string>
-    <string name="login_label">Perfeccionando tu belleza</string>
+    <string name="login_label">Iniciar sesión</string>
     <string name="loginbutton_label">Ingresar</string>
     <string name="register_label">Aún no tienes cuenta? Registrate</string>
     <string name="google_label">Ingresar con Google</string>
-    <string name="userlogin_label">Complete los campos</string>
+    <string name="userlogin_label">Regístrate</string>
 
     <!-- Strings related to new user login -->
     <string name="name_label">Nombre</string>
@@ -46,5 +46,9 @@
     <string name="fecha">Seleccione fecha:</string>
     <string name="hora">Seleccione hora:</string>
     <string name="precio">Precio:</string>
-    <string name="ejemFecha">24-02-21</string>
+    <string name="ejemFecha">Elegir...</string>
+
+    <!-- Strings related to HistoryActivity-->
+    <string name="history">"Historial"</string>
+s
 </resources>
