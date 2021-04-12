@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -18,12 +20,19 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class activity_loginuser extends AppCompatActivity {
     private EditText edt1, edt2, edt3, edt4;
     private Button btn1, btn2;
+    private int id = 0;
     FirebaseAuth firebaseAuth;
     AwesomeValidation awesomeValidation;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +40,7 @@ public class activity_loginuser extends AppCompatActivity {
         setContentView(R.layout.activity_loginuser);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidation.addValidation(this,R.id.txtemailuserlog, Patterns.EMAIL_ADDRESS,R.string.wrong_mail);
         awesomeValidation.addValidation(this,R.id.txtpassuserlog, ".{6,}",R.string.wrong_pass);
@@ -57,6 +67,11 @@ public class activity_loginuser extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
+                            id = VerificarUser(nombre, apellido);
+                            if(id == 0)
+                            {
+                                InsertUser(id,nombre,apellido);
+                            }
                             Toast.makeText(activity_loginuser.this,"Usuario creado con éxito",Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(activity_loginuser.this,LoginActivity.class);
                             startActivity(i);
@@ -76,5 +91,44 @@ public class activity_loginuser extends AppCompatActivity {
 
     public  void back(View view){
         activity_loginuser.this.finish();
+    }
+
+    public int VerificarUser(String _nombres, String _apellidos)
+    {
+        int respuesta = 0;
+
+        //Conexión a la base de datos
+        SqlLiteOpenHelperAdmin admin = new SqlLiteOpenHelperAdmin(this,"chalon_database",null,1);
+        SQLiteDatabase database = admin.getReadableDatabase();
+
+        Cursor fila = database.rawQuery("select id from clientes where nombres='"+_nombres.toString()+"' AND apellidos='"+_apellidos.toString()+"'",null);
+
+        if(fila.moveToFirst())
+        {
+            respuesta = fila.getInt(0);
+        }
+
+        return respuesta;
+    }
+
+    public void InsertUser(Integer id, String nombres, String apellidos)
+    {
+        int last_id = 0;
+        SqlLiteOpenHelperAdmin admin = new SqlLiteOpenHelperAdmin(this,"chalon_database",null,1);
+
+        SQLiteDatabase database = admin.getReadableDatabase();
+
+        Cursor fila0 = database.rawQuery("SELECT MAX(id) FROM clientes",null);
+
+        if(fila0.moveToFirst())
+        {
+            last_id = fila0.getInt(0);
+        }
+
+        int _id = last_id + 1;
+        final String Insert_cliente = "INSERT INTO clientes VALUES( " + _id + ", '" + nombres + "', '" + apellidos + "')";
+        database.execSQL(Insert_cliente);
+        //Actualizar la activity para mostrar los datos del insert actualizados
+        this.recreate();
     }
 }

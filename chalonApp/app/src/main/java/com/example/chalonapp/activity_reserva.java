@@ -52,7 +52,7 @@ public class activity_reserva extends AppCompatActivity {
            //textView.setText(mensaje);
 
            String CustomerName = "" + nombre_cliente + " " + apellidos_cliente + "";
-           tvActualUserName.setText(String.valueOf(id_cliente));
+           tvActualUserName.setText(CustomerName);
            tvTratamientoElegido.setText(nombre_tratamiento);
            tvPrecioTratamiento.setText("$ " + String.valueOf(precio_tratamiento));
 

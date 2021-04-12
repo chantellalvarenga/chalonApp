@@ -9,7 +9,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <TextView
             android:id="@+id/tvTratamientos"
@@ -25,11 +27,24 @@
             tools:layout_editor_absoluteX="53dp"
             tools:layout_editor_absoluteY="72dp" />
 
+        <TextView
+            android:id="@+id/lblnombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#B30B0B" />
+
+        <TextView
+            android:id="@+id/lblapellido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#CD1414" />
+
         <ListView
             android:id="@+id/listView1"
             android:layout_width="405dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

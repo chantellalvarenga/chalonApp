@@ -27,23 +27,26 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class activity_selecion extends AppCompatActivity {
-
+    public int id = 0;
     EditText idtxt;
     ImageView img;
-    TextView txtBienvenidaUser;
+    TextView txtBienvenidaUser, tvnombre, tvapellido;
     ListView listviewTratamientos;
     List<Tratamiento> listaTratamientos;
     String nombres = "";
     String apellidos = "";
-    String displayname;
+    private String nama, apa;
+    String displayname, correo, userID;
     FirebaseAuth firebaseAuth;
     private GoogleSignInClient mGoogleSignInClient;
     private GoogleSignInOptions gso;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,29 +55,22 @@ public class activity_selecion extends AppCompatActivity {
 
         //Declaramos las variables a utilizar
         //img=findViewById(R.id.imageView1);
-        //txtBienvenidaUser = findViewById(R.id.txtBienvenidaUser);
+        txtBienvenidaUser = findViewById(R.id.tvTratamientos);
+        tvnombre = findViewById(R.id.lblnombre);
+        tvapellido = findViewById(R.id.lblapellido);
         listviewTratamientos=findViewById(R.id.listView1);
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         displayname = currentUser.getDisplayName();
+        userID = firebaseAuth.getCurrentUser().getUid();
+        correo = currentUser.getEmail();
         if (displayname != null){
             String[] arrSplit_3 = displayname.split("\\s");
             nombres = arrSplit_3[0];
             //apellidos = arrSplit_3[1];
         }
 
-        //Verificar en la base de datos y obtener el id del usuario recibido desde Firebase
-        int id = 0;
-        id = VerificarUser(nombres, apellidos);
-
-        //Bienvenida al Usuario
-        //txtBienvenidaUser.setText("Bienvenido: " + nombres + " " + apellidos);
-
-        //Si no existe en BD lo crea
-       if(id == 0)
-       {
-           InsertUser(id,nombres,apellidos);
-       }
+        //Borré métodos de verificar usuarios e insertar usuarios
 
        CustomAdapter adapter = new CustomAdapter(this, GetData(), id);
         listviewTratamientos.setAdapter(adapter);
@@ -174,44 +170,9 @@ public class activity_selecion extends AppCompatActivity {
     }
 
 
-    public int VerificarUser(String _nombres, String _apellidos)
-    {
-      int respuesta = 0;
 
-        //Conexión a la base de datos
-        SqlLiteOpenHelperAdmin admin = new SqlLiteOpenHelperAdmin(this,"chalon_database",null,1);
-        SQLiteDatabase database = admin.getReadableDatabase();
-
-        Cursor fila = database.rawQuery("select id from clientes where nombres='"+_nombres.toString()+"' AND apellidos='"+_apellidos.toString()+"'",null);
-
-        if(fila.moveToFirst())
-        {
-            respuesta = fila.getInt(0);
-        }
-
-        return respuesta;
-    }
 
     //Inserta usuario logeado desde Firebase si no existe en la base de datos sqlLite
     //Recibe como parametros los nombres y apellidos
-    public void InsertUser(Integer id, String nombres, String apellidos)
-    {
-        int last_id = 0;
-        SqlLiteOpenHelperAdmin admin = new SqlLiteOpenHelperAdmin(this,"chalon_database",null,1);
 
-        SQLiteDatabase database = admin.getReadableDatabase();
-
-        Cursor fila0 = database.rawQuery("SELECT MAX(id) FROM clientes",null);
-
-        if(fila0.moveToFirst())
-        {
-            last_id = fila0.getInt(0);
-        }
-
-        int _id = last_id + 1;
-        final String Insert_cliente = "INSERT INTO clientes VALUES( " + _id + ", '" + nombres + "', '" + apellidos + "')";
-        database.execSQL(Insert_cliente);
-        //Actualizar la activity para mostrar los datos del insert actualizados
-       this.recreate();
-    }
 }
