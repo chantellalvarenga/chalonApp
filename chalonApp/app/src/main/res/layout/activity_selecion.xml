@@ -11,6 +11,16 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <ImageButton
+            android:id="@+id/tvLinkHistorial"
+            android:layout_width="39dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="350dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/user_icon"
+            android:onClick="goHistory"
+            android:text="@string/history" />
+
         <TextView
             android:id="@+id/tvTratamientos"
             android:layout_width="wrap_content"
@@ -24,13 +34,6 @@
             android:textStyle="bold"
             tools:layout_editor_absoluteX="53dp"
             tools:layout_editor_absoluteY="72dp" />
-
-        <TextView
-            android:id="@+id/tvLinkHistorial"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="goHistory"
-            android:text="@string/history" />
 
         <ListView
             android:id="@+id/listView1"

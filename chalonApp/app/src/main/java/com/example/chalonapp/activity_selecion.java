@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -35,7 +36,8 @@ public class activity_selecion extends AppCompatActivity {
 
     EditText idtxt;
     ImageView img;
-    TextView txtBienvenidaUser, tvLinkHistorial;
+    TextView txtBienvenidaUser;
+    ImageButton tvLinkHistorial;
     ListView listviewTratamientos;
     List<Tratamiento> listaTratamientos;
     String nombres = "";

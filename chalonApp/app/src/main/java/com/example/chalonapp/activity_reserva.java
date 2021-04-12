@@ -2,9 +2,11 @@ package com.example.chalonapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -192,6 +194,17 @@ public class activity_reserva extends AppCompatActivity implements View.OnClickL
                         database.execSQL(Insert_cita);
 
                         Toast.makeText(activity_reserva.this,"¡Cita agendada exitosamente!", Toast.LENGTH_SHORT).show();
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                startActivity(new Intent(activity_reserva.this,activity_selecion.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                                //Finish
+                                finish();
+
+                            }
+                        }, 3000);
                     }
 
                 }
