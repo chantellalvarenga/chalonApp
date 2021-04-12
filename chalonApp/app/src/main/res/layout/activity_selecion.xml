@@ -34,8 +34,8 @@
 
             <ImageButton
                 android:id="@+id/tvLinkHistorial2"
-                android:layout_width="46dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
                 android:layout_marginStart="290dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
