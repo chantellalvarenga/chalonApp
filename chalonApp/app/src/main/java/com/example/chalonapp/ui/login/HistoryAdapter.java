@@ -9,9 +9,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 import com.example.chalonapp.R;
 import com.example.chalonapp.SqlLiteOpenHelperAdmin;
+import com.example.chalonapp.activity_reserva;
 import com.example.chalonapp.data.model.Cita;
 
 import java.util.List;
@@ -20,6 +23,10 @@ public class HistoryAdapter extends BaseAdapter {
     Context context;
     List<Cita> list;
     int _id_cliente = 0;
+    String imgTratamientoURL = "";
+    String TratamientoName = "";
+    String TratamientoPrice = "";
+    int hora = 0;
 
     public HistoryAdapter(Context context, List<Cita> list, int id_cliente) {
         this.context = context;
@@ -59,15 +66,39 @@ public class HistoryAdapter extends BaseAdapter {
         tvFechaCita = view.findViewById(R.id.tvFechaCitada);
         tvHoraCita = view.findViewById(R.id.tvHoraCita);
 
-       /* Glide.with(view)
-                .load(item.getImg_url().toString())
-                .into(imageTratamiento);
-        */
+        //Realizar Consulta para obtener los datos del IdTratamiento de la Cita a mostrar
 
-        //TxtNombre.setText(item.getNombre());
-        //TxtPrecio.setText("$ " + String.valueOf(item.getPrecio()));
+        SqlLiteOpenHelperAdmin admin = new SqlLiteOpenHelperAdmin(this.context,"chalon_database",null,1);
+        SQLiteDatabase database = admin.getReadableDatabase();
+
+        Cursor filaTrat = database.rawQuery("select trat.nombre, trat.precio, trat.img_url from citas cits inner join tratamientos trat on trat.id = cits.id_tratamiento where cits.id_tratamiento = '" + String.valueOf( item.getId_tratamiento() ) + "'", null);
+
+        if(filaTrat.moveToFirst())
+        {
+            TratamientoName= filaTrat.getString(0);
+            TratamientoPrice = filaTrat.getString(1);
+            imgTratamientoURL = filaTrat.getString(2);
+        }
+
+       Glide.with(view)
+                .load(imgTratamientoURL)
+                .into(imageTratamiento);
+
+        TxtNombre.setText(TratamientoName);
+        TxtPrecio.setText("$ " + TratamientoPrice);
         tvFechaCita.setText(item.getFecha());
-        tvHoraCita.setText(item.getHora());
+
+
+        String arrayHora[] = item.getHora().split(":");
+        hora = Integer.parseInt( arrayHora[0] );
+
+        if ( hora > 11 ){
+            tvHoraCita.setText(item.getHora() + " pm");
+        }
+        else {
+            tvHoraCita.setText(item.getHora() + " am");
+        }
+
         return view;
     }
 }
