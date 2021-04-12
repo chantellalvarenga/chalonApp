@@ -49,6 +49,11 @@
     <string name="ejemFecha">Elegir...</string>
 
     <!-- Strings related to HistoryActivity-->
+    <string name="reporte">"Reporte de citas"</string>
     <string name="history">"Historial"</string>
-s
+    <string name="user">"Nombre:"</string>
+    <string name="totalCitas">"Citas Registradas:"</string>
+    <string name="userExample">"Chantell Alvarenga"</string>
+    <string name="totalCitasExample">"12"</string>
+
 </resources>

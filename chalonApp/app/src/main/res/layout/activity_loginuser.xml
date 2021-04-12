@@ -99,8 +99,8 @@
 
     <Button
         android:id="@+id/btnbackuserlog"
-        android:layout_width="82dp"
-        android:layout_height="30dp"
+        android:layout_width="96dp"
+        android:layout_height="37dp"
         android:layout_marginTop="47dp"
         android:background="#70E89F91"
         android:onClick="back"
@@ -115,8 +115,8 @@
 
     <Button
         android:id="@+id/btnregisteruserlog"
-        android:layout_width="85dp"
-        android:layout_height="30dp"
+        android:layout_width="103dp"
+        android:layout_height="37dp"
         android:layout_marginTop="47dp"
         android:background="#70E89F91"
         android:onClick="IngresarUser"

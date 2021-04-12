@@ -18,6 +18,7 @@ public class SqlLiteOpenHelperAdmin extends SQLiteOpenHelper{
     private static final String KEY_CLIENTE_ID = "id";
     private static final String KEY_CLIENTE_NOMBRES = "nombres";
     private static final String KEY_CLIENTE_APELLIDOS = "apellidos";
+    private static final String KEY_CLIENTE_CORREO = "correo";
 
 
     // Columnas tabla tratamientos
@@ -43,8 +44,9 @@ public class SqlLiteOpenHelperAdmin extends SQLiteOpenHelper{
         String CREATE_CLIENTES_TABLE = "CREATE TABLE " + TABLE_CLIENTES +
                 "(" +
                 KEY_CLIENTE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + // Define a primary key
-                KEY_CLIENTE_NOMBRES + " TEXT,"+
-                KEY_CLIENTE_APELLIDOS +" TEXT"+
+                KEY_CLIENTE_NOMBRES + " TEXT," +
+                KEY_CLIENTE_APELLIDOS + " TEXT," +
+                KEY_CLIENTE_CORREO + " TEXT" +
                 ")";
         String CREATE_TRATAMIENTOS_TABLE = "CREATE TABLE " + TABLE_TRATAMIENTOS +
                 "(" +

@@ -55,7 +55,7 @@ public class CustomAdapter extends BaseAdapter {
         TextView TxtPrecio;
         Button btn_reserva;
 
-        Tratamiento item=list.get(i);
+        Tratamiento item = list.get(i);
 
         if(view==null)
             view=LayoutInflater.from(context).inflate(R.layout.item_list_view,null);
@@ -93,7 +93,7 @@ btn_reserva.setOnClickListener(new View.OnClickListener() {
         }
 
 
-        Intent reserva=new Intent(context,activity_reserva.class);
+        Intent reserva = new Intent(context,activity_reserva.class);
         reserva.putExtra("id_cliente",_id_cliente);
         reserva.putExtra("nombres_cliente",nombres_cliente);
         reserva.putExtra("apellidos_cliente",apellidos_cliente);

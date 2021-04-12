@@ -38,6 +38,7 @@ public class activity_reserva extends AppCompatActivity implements View.OnClickL
     public String apellidos_cliente = "";
     public String nombre_tratamiento = "";
     public double precio_tratamiento = 0;
+    public String CustomerName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,7 @@ public class activity_reserva extends AppCompatActivity implements View.OnClickL
            nombre_tratamiento = bundle.getString("nombre_tratamiento");
            precio_tratamiento = bundle.getDouble("precio_tratamiento");
 
-           String CustomerName = "" + nombre_cliente + " " + apellidos_cliente + "";
+           CustomerName = "" + nombre_cliente + " " + apellidos_cliente + "";
            tvActualUserName.setText( String.valueOf(CustomerName) );
            tvTratamientoElegido.setText(nombre_tratamiento);
            tvPrecioTratamiento.setText("$ " + String.valueOf(precio_tratamiento));
@@ -198,7 +199,11 @@ public class activity_reserva extends AppCompatActivity implements View.OnClickL
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                startActivity(new Intent(activity_reserva.this,activity_selecion.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+
+                                Intent i2 = new Intent(activity_reserva.this, activity_selecion.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                i2.putExtra("idActualUser", id_cliente );
+                                i2.putExtra("ActualUserName", CustomerName);
+                                startActivity(i2);
                                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
                                 //Finish
                                 finish();

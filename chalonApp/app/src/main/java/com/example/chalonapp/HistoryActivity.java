@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,10 +23,12 @@ public class HistoryActivity extends AppCompatActivity {
 
     EditText idtxt;
     ImageView img;
-    TextView tvLinkHistorial;
+    ImageButton tvLinkHistorial;
     ListView listviewTratamientos;
     List<Cita> listaTratamientos;
-
+    TextView tvUserNameValue, tvTotalCitasValue;
+    int IdActualUser = 0;
+    String ActualUserName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,19 +38,40 @@ public class HistoryActivity extends AppCompatActivity {
         tvLinkHistorial = findViewById(R.id.tvLinkHistorial);
         //img=findViewById(R.id.imageView1);
         //txtBienvenidaUser = findViewById(R.id.txtBienvenidaUser);
-        listviewTratamientos = findViewById(R.id.listView1);
 
-        HistoryAdapter adapter = new HistoryAdapter(this, GetData(), 1);
+        listviewTratamientos = findViewById(R.id.listView1);
+        tvUserNameValue = findViewById(R.id.tvUserNameValue);
+        tvTotalCitasValue = findViewById(R.id.tvTotalCitasValue);
+
+        //Debo pasarlo desde seleccion
+        Bundle bundle = getIntent().getExtras();
+        IdActualUser = bundle.getInt("IdUsuario");
+        ActualUserName = bundle.getString("Usuario");
+
+        //Conexion a base de datos
+        SqlLiteOpenHelperAdmin admin = new SqlLiteOpenHelperAdmin(this,"chalon_database",null,1);
+        SQLiteDatabase database = admin.getReadableDatabase();
+
+        int CitasAgendadas = 0;
+        Cursor filaTotalCitas = database.rawQuery("select Count(id) from citas where id_cliente = '" + String.valueOf(IdActualUser) + "'",null);
+
+        if(filaTotalCitas.moveToFirst())
+        {
+            CitasAgendadas = filaTotalCitas.getInt(0);
+        }
+
+        tvUserNameValue.setText(ActualUserName);
+        tvTotalCitasValue.setText( String.valueOf(CitasAgendadas) );
+        HistoryAdapter adapter = new HistoryAdapter(this, GetData(database), IdActualUser);
         listviewTratamientos.setAdapter(adapter);
 
     }
 
-    private List<Cita> GetData() {
-        SqlLiteOpenHelperAdmin admin = new SqlLiteOpenHelperAdmin(this,"chalon_database",null,1);
-        SQLiteDatabase database = admin.getReadableDatabase();
+    private List<Cita> GetData(SQLiteDatabase db) {
+
         ArrayList<Cita> listItem = new ArrayList<>();
 
-        Cursor fila = database.rawQuery("select id, id_cliente, id_tratamiento, fecha, estado, hora from citas ",null);
+        Cursor fila = db.rawQuery("select id, id_cliente, id_tratamiento, fecha, estado, hora from citas order by id desc ",null);
 
         if(fila.moveToFirst())
         {

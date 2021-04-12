@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -130,8 +132,16 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()){
                         Toast.makeText(LoginActivity.this,"Sesión iniciada con éxito",Toast.LENGTH_SHORT).show();
                         FirebaseUser user = firebaseAuth.getCurrentUser();
-                        Intent i2 = new Intent(LoginActivity.this,activity_selecion.class);
-                        startActivity(i2);
+
+                            //Obtenemos el usuario loggeado
+                            String ActualUserData[] = getUserByEmail(email);
+
+                            Intent i2 = new Intent(LoginActivity.this, activity_selecion.class);
+                            i2.putExtra("idActualUser", Integer.parseInt( ActualUserData[0] ) );
+                            i2.putExtra("ActualUserName", ActualUserData[1]);
+                            startActivity(i2);
+
+
                     }else{
                         String ErrorCode = ((FirebaseAuthException) task.getException()).getErrorCode();
                         Toast.makeText(LoginActivity.this,ErrorCode,Toast.LENGTH_SHORT).show();
@@ -141,12 +151,37 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    public String[] getUserByEmail(String _correo)
+    {
+        int idUser = 0;
+        String userName = "";
+        String userLastName = "";
 
-    //public void IrSelecciones(View view)
-    //{
-      //  Intent seleccion=new Intent(this,activity_selecion.class);
-       // seleccion.putExtra("nombres","Josue");
-        //seleccion.putExtra("apellidos","Chacon");
-        //startActivity(seleccion);
-   // }
+        String UserData[] = new String[2];
+
+        //Conexión a la base de datos
+        SqlLiteOpenHelperAdmin admin = new SqlLiteOpenHelperAdmin(this,"chalon_database",null,1);
+        SQLiteDatabase database = admin.getReadableDatabase();
+
+        Cursor fila = database.rawQuery("select id, nombres, apellidos from clientes where correo = '" + _correo + "'", null);
+
+        if(fila.moveToFirst())
+        {
+            idUser = fila.getInt(0);
+            userName = fila.getString(1);
+            userLastName = fila.getString(2);
+        }
+
+        if (idUser > 0){
+            UserData[0] = String.valueOf(idUser);
+            UserData[1] = userName + " " + userLastName;
+        } else {
+            UserData[0] = "";
+            UserData[1] = "";
+        }
+
+
+        return UserData;
+    }
+
 }

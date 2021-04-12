@@ -67,15 +67,19 @@ public class activity_loginuser extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            id = VerificarUser(nombre, apellido);
-                            if(id == 0)
+                            id = VerificarUser(correo);
+                            if(id > 0)
                             {
-                                InsertUser(id,nombre,apellido);
+                                Toast.makeText(activity_loginuser.this,"El correo ingresado ya está asociado a una cuenta existente",Toast.LENGTH_SHORT).show();
                             }
-                            Toast.makeText(activity_loginuser.this,"Usuario creado con éxito",Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(activity_loginuser.this,LoginActivity.class);
-                            startActivity(i);
-                            FirebaseAuth.getInstance().signOut();
+                            else {
+                                InsertUser(id,nombre,apellido,correo);
+                                Toast.makeText(activity_loginuser.this,"Usuario creado con éxito",Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(activity_loginuser.this,LoginActivity.class);
+                                startActivity(i);
+                                FirebaseAuth.getInstance().signOut();
+                            }
+
                             activity_loginuser.this.finish();
                         }else{
                             String ErrorCode = ((FirebaseAuthException) task.getException()).getErrorCode();
@@ -93,7 +97,7 @@ public class activity_loginuser extends AppCompatActivity {
         activity_loginuser.this.finish();
     }
 
-    public int VerificarUser(String _nombres, String _apellidos)
+    public int VerificarUser(String _correo)
     {
         int respuesta = 0;
 
@@ -101,7 +105,7 @@ public class activity_loginuser extends AppCompatActivity {
         SqlLiteOpenHelperAdmin admin = new SqlLiteOpenHelperAdmin(this,"chalon_database",null,1);
         SQLiteDatabase database = admin.getReadableDatabase();
 
-        Cursor fila = database.rawQuery("select id from clientes where nombres='"+_nombres.toString()+"' AND apellidos='"+_apellidos.toString()+"'",null);
+        Cursor fila = database.rawQuery("select id from clientes where correo = '" + _correo + "'",null);
 
         if(fila.moveToFirst())
         {
@@ -111,7 +115,7 @@ public class activity_loginuser extends AppCompatActivity {
         return respuesta;
     }
 
-    public void InsertUser(Integer id, String nombres, String apellidos)
+    public void InsertUser(Integer id, String nombres, String apellidos, String correo)
     {
         int last_id = 0;
         SqlLiteOpenHelperAdmin admin = new SqlLiteOpenHelperAdmin(this,"chalon_database",null,1);
@@ -126,7 +130,7 @@ public class activity_loginuser extends AppCompatActivity {
         }
 
         int _id = last_id + 1;
-        final String Insert_cliente = "INSERT INTO clientes VALUES( " + _id + ", '" + nombres + "', '" + apellidos + "')";
+        final String Insert_cliente = "INSERT INTO clientes VALUES( " + _id + ", '" + nombres + "', '" + apellidos + "', '" + correo + "')";
         database.execSQL(Insert_cliente);
         //Actualizar la activity para mostrar los datos del insert actualizados
         this.recreate();

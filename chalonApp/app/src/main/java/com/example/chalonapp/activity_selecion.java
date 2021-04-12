@@ -41,10 +41,12 @@ public class activity_selecion extends AppCompatActivity {
     ImageButton tvLinkHistorial;
     ListView listviewTratamientos;
     List<Tratamiento> listaTratamientos;
-    String nombres = "";
-    String apellidos = "";
-    String displayname;
-    FirebaseAuth firebaseAuth;
+    //String nombres = "";
+    //String apellidos = "";
+    //String displayname;
+    //FirebaseAuth firebaseAuth;
+    int ActualUserId = 0;
+    String ActualUserName = "";
     private GoogleSignInClient mGoogleSignInClient;
     private GoogleSignInOptions gso;
 
@@ -55,21 +57,23 @@ public class activity_selecion extends AppCompatActivity {
 
         //Declaramos las variables a utilizar
         tvLinkHistorial = findViewById(R.id.tvLinkHistorial);
-        //img=findViewById(R.id.imageView1);
-        //txtBienvenidaUser = findViewById(R.id.txtBienvenidaUser);
         listviewTratamientos=findViewById(R.id.listView1);
-        firebaseAuth = FirebaseAuth.getInstance();
+
+        /*firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         displayname = currentUser.getDisplayName();
         if (displayname != null){
             String[] arrSplit_3 = displayname.split("\\s");
             nombres = arrSplit_3[0];
-            //apellidos = arrSplit_3[1];
-        }
+            apellidos = arrSplit_3[1];
+        }*/
 
-        //Borré métodos de verificar usuarios e insertar usuarios
+        //Debo traerlo IDCLIENTE desde LoginUser mediante el corrreo loggeado
+        Bundle bundle = getIntent().getExtras();
+        ActualUserId = bundle.getInt("idActualUser");
+        ActualUserName = bundle.getString("ActualUserName");
 
-       CustomAdapter adapter = new CustomAdapter(this, GetData(), 1);
+       CustomAdapter adapter = new CustomAdapter(this, GetData(), ActualUserId);
         listviewTratamientos.setAdapter(adapter);
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -81,7 +85,7 @@ public class activity_selecion extends AppCompatActivity {
 
     public void closeFirebaseAccount(View view) {
         FirebaseAuth.getInstance().signOut();
-        Toast.makeText(activity_selecion.this, "Sesión cerrada con éxito", Toast.LENGTH_SHORT).show();
+        Toast.makeText(activity_selecion.this, "Gracias por visitarnos!", Toast.LENGTH_SHORT).show();
         Intent i = new Intent(activity_selecion.this,LoginActivity.class);
         startActivity(i);
         activity_selecion.this.finish();
@@ -168,6 +172,8 @@ public class activity_selecion extends AppCompatActivity {
 
     public void goHistory(View v) {
         Intent seleccion = new Intent(this, HistoryActivity.class);
+        seleccion.putExtra("IdUsuario", ActualUserId);
+        seleccion.putExtra("Usuario", ActualUserName);
         startActivity(seleccion);
     }
 

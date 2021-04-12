@@ -10,18 +10,40 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="0dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-        <ImageButton
-            android:id="@+id/tvLinkHistorial"
-            android:layout_width="39dp"
-            android:layout_height="34dp"
-            android:layout_marginStart="350dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/user_icon"
-            android:onClick="goHistory"
-            android:text="@string/history" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/tvLinkHistorial"
+                android:layout_width="39dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/user_icon"
+                android:onClick="goHistory"
+                android:text="@string/history" />
+
+            <ImageButton
+                android:id="@+id/tvLinkHistorial2"
+                android:layout_width="46dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="290dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/logout"
+                android:onClick="closeFirebaseAccount"
+                android:text="@string/history" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvTratamientos"
@@ -37,22 +59,10 @@
             tools:layout_editor_absoluteX="53dp"
             tools:layout_editor_absoluteY="72dp" />
 
-        <TextView
-            android:id="@+id/lblnombre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#B30B0B" />
-
-        <TextView
-            android:id="@+id/lblapellido"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#CD1414" />
-
         <ListView
             android:id="@+id/listView1"
-            android:layout_width="405dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="618dp"
             android:layout_marginTop="15dp" />
 
     </LinearLayout>
