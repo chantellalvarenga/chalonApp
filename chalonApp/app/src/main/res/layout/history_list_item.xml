@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="180dp"
+    android:layout_height="150dp"
     android:layout_marginTop="30dp"
     android:background="#40E89F91">
 
@@ -18,22 +18,21 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.807"
+        app:layout_constraintVertical_bias="0.444"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/txtNombre_tratamiento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginTop="16dp"
         android:text="@string/DefaultValue"
         android:textColor="#090707"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tvPriceTrat"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.569"
+        app:layout_constraintHorizontal_bias="0.598"
         app:layout_constraintStart_toEndOf="@+id/imageViewTratamiento"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,7 +40,7 @@
         android:id="@+id/tvPriceTrat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="4dp"
         android:text="@string/precio"
         android:textColor="#090707"
         android:textSize="18sp"
@@ -57,7 +56,7 @@
         android:id="@+id/tvFechaCitada"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:text="@string/fecha"
         android:textColor="#090707"
         android:textSize="18sp"
@@ -72,7 +71,7 @@
         android:id="@+id/tvHoraCita"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginBottom="13dp"
         android:text="@string/hora"
         android:textColor="#090707"
